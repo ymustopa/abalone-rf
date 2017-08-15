@@ -3,7 +3,7 @@ The dataset (which has 9 features and 4,177 instances) and its attendant informa
 
 https://archive.ics.uci.edu/ml/datasets/abalone/
 
-We will carry out the regression task of predicting the age of blacklip abalone based on various physical measurements.  Although this was done with and without feature selection, the code we present is only for case of feature Here are the descriptions of the variables.
+We will carry out the regression task of predicting the age of blacklip abalone based on various physical measurements.  Although this was done with and without feature selection, what we present in detail is the approach via feature selection; for the other approach we present only the normalized RMS error for comparison.  Here are the descriptions of the variables.
 
 
 |	Name |	Data Type	 | Units | Description |
@@ -74,12 +74,15 @@ summary(abareduced)
              3rd Qu.: 0.6426   3rd Qu.: 0.6478   3rd Qu.: 0.3307  
              Max.   : 5.0848   Max.   : 5.5040   Max.   : 5.9136   
 ````````
-Below are ggvis plots of both "shuckedweight" and "shellweight" against "rings," with the "sex" feature taken into account via color-coding.  Next, we split "abareduced" into training and testing sets.
+Below are ggvis plots of both "shuckedweight" and "shellweight" against "rings," with the "sex" feature taken into account via color-coding.  Afterwards, we split "abareduced" into training and testing sets.
 ``````
 abareduced %>% ggvis(~shuckedweight, ~rings, fill=~as.factor(unlist(sex))) %>% layer_points()
 abareduced %>% ggvis(~shellweight, ~rings, fill=~as.factor(unlist(sex))) %>% layer_points()
-``````
-(INSERT PLOTS HERE)
+```````
+![Shucked Weight vs. Rings](../master/shucked-plot.png) 
+
+|[Shell Weight vs. Rings](../master/shell-plot.png)
+```````
 ```````
 set.seed(1459)
 split <- createDataPartition(y=abareduced$rings, p=0.75, list=FALSE)
@@ -87,6 +90,7 @@ trainingred <- abareduced[split,]
 testingred <- abareduced[-split,]
 ```````
 Before training random forest on "trainingred" we reformat the “sex” feature. 
+
 ````````
 trainingred$sex <- as.factor(unlist(trainingred$sex))
 testingred$sex <- as.factor(unlist(testingred$sex))
