@@ -78,9 +78,10 @@ Below are ggvis plots of both "shuckedweight" and "shellweight" against "rings,"
 abareduced %>% ggvis(~shuckedweight, ~rings, fill=~as.factor(unlist(sex))) %>% layer_points()
 abareduced %>% ggvis(~shellweight, ~rings, fill=~as.factor(unlist(sex))) %>% layer_points()
 ```````
-![Shucked Weight vs. Rings](../master/shucked-plot.png) 
 
-|[Shell Weight vs. Rings](../master/shell-plot.png)
+Shucked Weight vs. Rings   |  Shell Weight vs. Rings 
+:-------------------------:|:-------------------------:
+![](../master/shucked-plot.png)  |  ![](../master/shell-plot.png)
 
 ```````
 set.seed(1459)
@@ -134,8 +135,11 @@ red_rmse <- sqrt(mean((red_predict - testingred$rings)^2))
 > 0.6750398 / (max(abareduced$rings)-min(abareduced$rings))
 [1] 0.07773009
 ```````
-We conclude by comparing this result to random forest without feature selection.  All the previous code was applied to "aba" without any elimination of features.  Here are the resulting normalized RMSEs on the training and testing sets, respectively:
-````````
-[1] 0.07664232  [1] 0.07641347
-````````
-Although the implementation without feature selection took much longer, the difference in accuracy seems negligible.
+We conclude by comparing this result to random forest without feature selection.  All the previous code was applied to "aba" without any elimination of features.  The following table summarizes the normalized RMSEs coming from both approaches.
+
+|         | With Feature Selection |  Without Feature Selection |
+|---------| ---------------------- | -------------------------- |
+| Training Set | 0.07904996            |  0.0766432                 |
+| Testing Set | 0.07773009 | 0.07641347 | 
+
+Although the implementation without feature selection took much longer, the increase in accuracy seems negligible.
