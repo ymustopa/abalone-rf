@@ -82,7 +82,7 @@ abareduced %>% ggvis(~shellweight, ~rings, fill=~as.factor(unlist(sex))) %>% lay
 ![Shucked Weight vs. Rings](../master/shucked-plot.png) 
 
 |[Shell Weight vs. Rings](../master/shell-plot.png)
-```````
+
 ```````
 set.seed(1459)
 split <- createDataPartition(y=abareduced$rings, p=0.75, list=FALSE)
