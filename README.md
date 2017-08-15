@@ -22,7 +22,6 @@ We will carry out the regression task of predicting the age of blacklip abalone 
  library(caret) 
  library(randomForest)
  library(ggvis)
- library(scatterplot3d)
   ```````
  Although there is an accompanying names file, we declare names which are unbroken and lowercase for relative ease of entry.
  ```````````
